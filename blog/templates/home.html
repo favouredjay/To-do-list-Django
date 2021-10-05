@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home page</title>
+</head>
+<body STYLE="text-align: center; background-color: darkmagenta; color: white; border-radius: inherit" >
+<br>
+<h1>My To-do List</h1>
+<a href="{% url 'task' %}"> Add your new task</a>
+<br>
+<h4><th>Tasks</th></h4>
+
+<tr>
+
+</tr>
+ {% for i in posts %}
+    <li>
+    <tr>
+        {% if i.completed == True %}
+         <strike>{{ i.title }} &nbsp <a href="{%  url "delete_task" i.id %}">Delete </a> </strike>
+        {% else %}
+        <td>{{ i.title  }} &nbsp <a href="{% url "update_task" i.id %}">Update</a> &nbsp <a href="{% url "delete_task" i.id %}"> Delete</a> </td>
+        {% endif %}
+     </tr>
+        {% empty %}
+            <h3>No items in list</h3>
+    </li>
+        {% endfor %}
+
+
+
+</body>
+</html>
